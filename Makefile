@@ -72,7 +72,15 @@ pytest:
 ifndef VIRTUAL_ENV
 	$(error must run target inside python virtualenv)
 endif
-	python -m pytest $(ARGS)
+	python -m pytest -v $(ARGS)
+
+.PHONY: pytest_cov
+pytest_cov:
+	@# Run python unit tests with code coverage summary
+ifndef VIRTUAL_ENV
+	$(error must run target inside python virtualenv)
+endif
+	python -m pytest --cov=mypackage --cov-report=term-missing -v $(ARGS)
 
 .PHONY: mypy
 mypy:
@@ -81,6 +89,12 @@ ifndef VIRTUAL_ENV
 	$(error must run target inside python virtualenv)
 endif
 	mypy .
+
+.PHONE: test
+clean_test:
+	@# Clear all cached data resulted from testing
+	find . -name '.*_cache' -type d | xargs rm -rf
+	rm -rf .coverage
 
 #####################
 ##@ Program Shortcuts

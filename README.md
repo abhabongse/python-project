@@ -87,3 +87,10 @@ each with separate python package dependencies with space-efficient optimization
 
 **Note:** For NodeJS programmers, an analogy for this would be `dependencies` 
 vs `devDependencies` section in `package.json` file, respectively.
+
+#### Why does `Makefile` not assuming a particular `virtualenv` setup?
+
+The tasks of creating and maintaining python `virtualenv` were left to individual 
+preferences of python programmers (esp. critical in collaborative projects).
+`Makefile` merely enforces that programmers must enter the virtualenv
+before executing the scripts as a safeguard against preventable human misuse.

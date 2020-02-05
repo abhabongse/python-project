@@ -15,6 +15,14 @@ Template for python project structure (with annotations).
    ```
 
 
+## Demonstration
+
+As a quick demonstration, try run the following command:
+```bash
+(venv)$ python -m mypackage
+```
+
+
 ## Git Commit Checklist
 ​
 Before committing changes in Git Repository, 
@@ -59,6 +67,15 @@ vs `package-lock.json` files respectively.
 
 This allows us to have _deterministic package installations_ across multiple machines,
 which means that it is less likely one program works on one machine but not the other.
+
+#### Why are there multiple `requirements.txt` files in various python local packages?
+
+In this project template, we demonstrate how programmers could separately maintain
+python package dependencies for _different_ local python packages
+(i.e. we have separate [`myhelpers/requirements.txt`](myhelpers/requirements.txt) 
+and [`mypackage/requirements.txt`](mypackage/requirements.txt) files).
+This pattern is particularly useful if programmers need to build multiple docker images,
+each with separate python package dependencies with space-efficient optimizations.
 
 #### What are differences between `requirements.txt` and `dev-requirements.txt`?
 

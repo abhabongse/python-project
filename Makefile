@@ -15,7 +15,8 @@ CONSTRAINED_REQFILES = \
 	)
 
 # Locations to all requirement files that requires pinning down
-REQUIREMENTS_FILES := requirements.txt
+REQUIREMENTS_FILES := myhelpers/requirements.txt
+REQUIREMENTS_FILES += mypackage/requirements.txt
 REQUIREMENTS_FILES += dev-requirements.txt
 
 .PHONY: help

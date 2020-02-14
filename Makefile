@@ -4,6 +4,25 @@
 # | |  | | (_| |   <  __/  _| | |  __/
 # |_|  |_|\__,_|_|\_\___|_| |_|_|\___|
 #
+#############################
+## USER CONFIGURABLE SECTIONS
+#############################
+
+# List of written python packages
+PYTHON_PROJECT_PACKAGES := myhelpers
+PYTHON_PROJECT_PACKAGES += mypackage
+
+# Locations to all requirement files that requires pinning down
+REQUIREMENTS_FILES := myhelpers/requirements.txt
+REQUIREMENTS_FILES += mypackage/requirements.txt
+REQUIREMENTS_FILES += dev-requirements.txt
+
+# Location to HTML documentation build
+HTML_DOC_OUTPUT = build/html
+
+##########
+## RECIPES
+##########
 
 # This function computes a list of dependent *requirements.txt files
 # from *requirements.in file.
@@ -13,11 +32,6 @@ CONSTRAINED_REQFILES = \
 		$(shell grep -oP '(?<=^-c\s).*' $(1) | sed 's/\s\+//g'), \
 		$(join $(dir $(1)),$(req_file)) \
 	)
-
-# Locations to all requirement files that requires pinning down
-REQUIREMENTS_FILES := myhelpers/requirements.txt
-REQUIREMENTS_FILES += mypackage/requirements.txt
-REQUIREMENTS_FILES += dev-requirements.txt
 
 .PHONY: help
 help:
@@ -81,7 +95,8 @@ pytest_cov:
 ifndef VIRTUAL_ENV
 	$(error must run target inside python virtualenv)
 endif
-	python -m pytest --cov=mypackage --cov-report=term-missing -v $(ARGS)
+	python -m pytest $(foreach pkg,$(PYTHON_PROJECT_PACKAGES),"--cov=$(pkg)") \
+		--cov-report=term-missing -v $(ARGS)
 
 .PHONY: mypy
 mypy:
@@ -91,11 +106,39 @@ ifndef VIRTUAL_ENV
 endif
 	mypy .
 
-.PHONE: test
-clean_test:
+.PHONY: test_clean
+test_clean:
 	@# Clear all cached data resulted from testing
 	find . -name '.*_cache' -type d | xargs rm -rf
 	rm -rf .coverage
+
+#############################
+##@ Documentation Generations
+#############################
+
+.PHONY: doc_preview
+doc_preview:
+	@# Preview documentation generated from source code
+ifndef VIRTUAL_ENV
+	$(error must run target inside python virtualenv)
+endif
+	pdoc --template-dir pdoc_templates --http : $(PYTHON_PROJECT_PACKAGES)
+
+.PHONY: doc_build
+doc_build:
+	@# Build document as HTML files
+ifndef VIRTUAL_ENV
+	$(error must run target inside python virtualenv)
+endif
+	pdoc --template-dir pdoc_templates --html --output-dir "$(HTML_DOC_OUTPUT)" \
+		$(PYTHON_PROJECT_PACKAGES)
+	@echo "HTML files are generated inside build/html directory."
+
+.PHONY: doc_clean
+doc_clean:
+	@# Clean up generated HTML files
+	rm -rf "$(HTML_DOC_OUTPUT)"
+	-rmdir build
 
 #####################
 ##@ Program Shortcuts
@@ -124,7 +167,7 @@ endif
 	jupyter console
 
 ###################
-## Second Expansion
+## SECOND EXPANSION
 ###################
 
 .SECONDEXPANSION:

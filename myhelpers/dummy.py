@@ -12,7 +12,7 @@ def longest_common_prefix(fst: str, snd: str) -> str:
         snd: Second string
 
     Returns:
-        Longest common prefix string
+        : Longest common prefix string
     """
     bound = 0
     for a, b in zip(fst, snd):

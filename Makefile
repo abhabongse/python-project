@@ -13,9 +13,7 @@ PYTHON_PROJECT_PACKAGES := myhelpers
 PYTHON_PROJECT_PACKAGES += mypackage
 
 # Locations to all requirement files that requires pinning down
-REQUIREMENTS_FILES := myhelpers/requirements.txt
-REQUIREMENTS_FILES += mypackage/requirements.txt
-REQUIREMENTS_FILES += dev-requirements.txt
+REQUIREMENTS_FILES := $(patsubst ./%.in,%.txt,$(shell find . -type f -name '*.in'))
 
 # Location to HTML documentation build
 HTML_DOC_OUTPUT = build/html

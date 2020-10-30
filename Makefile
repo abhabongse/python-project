@@ -60,7 +60,7 @@ ifndef VIRTUAL_ENV
 	$(error must run target inside python virtualenv)
 endif
 	@which pip-compile >/dev/null 2>&1 || pip install pip-tools
-	pip-compile -o $@ $<
+	pip-compile -o $@ $< $(ARGS)
 	@echo "Generated $@ from $^"
 
 ######################
@@ -96,14 +96,6 @@ endif
 	python -m pytest $(foreach pkg,$(PYTHON_PROJECT_PACKAGES),"--cov=$(pkg)") \
 		--cov-report=term-missing -v $(ARGS)
 
-.PHONY: mypy
-mypy:
-	@# Run python type checker tool
-ifndef VIRTUAL_ENV
-	$(error must run target inside python virtualenv)
-endif
-	mypy .
-
 .PHONY: test_clean
 test_clean:
 	@# Clear all cached data resulted from testing
@@ -114,29 +106,29 @@ test_clean:
 ##@ Documentation Generations
 #############################
 
-.PHONY: doc_preview
-doc_preview:
+.PHONY: docs_preview
+docs_preview:
 	@# Preview documentation generated from source code
 ifndef VIRTUAL_ENV
 	$(error must run target inside python virtualenv)
 endif
-	pdoc --template-dir pdoc_templates --http : $(PYTHON_PROJECT_PACKAGES)
+	sphinx-autobuild -b html docs docs/_build/livehtml
 
-.PHONY: doc_build
-doc_build:
+.PHONY: docs_build
+docs_build:
 	@# Build document as HTML files
 ifndef VIRTUAL_ENV
 	$(error must run target inside python virtualenv)
 endif
-	pdoc --template-dir pdoc_templates --html --output-dir "$(HTML_DOC_OUTPUT)" \
-		$(PYTHON_PROJECT_PACKAGES)
-	@echo "HTML files are generated inside build/html directory."
+	sphinx-build -M html docs docs/_build
 
-.PHONY: doc_clean
-doc_clean:
-	@# Clean up generated HTML files
-	rm -rf "$(HTML_DOC_OUTPUT)"
-	-rmdir build
+.PHONY: docs_help
+docs_help:
+	@# Build document as HTML files
+ifndef VIRTUAL_ENV
+	$(error must run target inside python virtualenv)
+endif
+	sphinx-build -M help docs docs/_build
 
 #####################
 ##@ Program Shortcuts

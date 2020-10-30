@@ -1,0 +1,2 @@
+-c ../myutils/requirements.txt
+click~=7.0

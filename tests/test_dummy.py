@@ -1,6 +1,6 @@
 import pytest
 
-from myutils.dummy import longest_common_prefix
+from myhelpers.dummy import longest_common_prefix
 
 
 @pytest.mark.parametrize(

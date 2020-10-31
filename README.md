@@ -84,7 +84,7 @@ which means that it is less likely one program works on one machine but not the 
 
 In this project template, we demonstrate how programmers could separately maintain
 python package dependencies for _different_ local python packages
-(i.e. we have separate [`myhelpers/requirements.txt`](myutils/requirements.txt) 
+(i.e. we have separate [`myhelpers/requirements.txt`](myhelpers/requirements.txt) 
 and [`mypackage/requirements.txt`](myapp/requirements.txt) files).
 This pattern is particularly useful if programmers need to build multiple docker images,
 each with separate python package dependencies with space-efficient optimizations.

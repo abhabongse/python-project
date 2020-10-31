@@ -1,6 +1,7 @@
 """
 Dummy module to illustrate the python project structure.
 """
+from __future__ import annotations
 
 
 def longest_common_prefix(fst: str, snd: str) -> str:

@@ -17,4 +17,4 @@ Template for python project structure (with annotations).
   python dependency management, testing and linting tools,
   documentation generation, etc.).
 
-**For more information, see the guid of [how to use this template](docs/wiki/howto.md).**
+**For more information, see the guide of [how to use this template](docs/wiki/howto.md).**

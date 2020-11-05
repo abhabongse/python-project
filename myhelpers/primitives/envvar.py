@@ -38,6 +38,12 @@ class EnvironmentVariable:
     will also automatically maintaining a dictionary mapping from attribute names
     to these data descriptors via ``_envvar_fields_`` class attribute.
 
+    If you wish to pre-load all environment variables at the program startup,
+    use the following snippets:
+
+        for key in conf._envvar_fields_:
+            getattr(conf, key)  # will force the environment variable lookup to happen
+
     Attributes:
         env_name: Name of the environment variable
         required: Whether to expect the environment variable to be set
@@ -83,9 +89,6 @@ class EnvironmentVariable:
             instance.__dict__[self.env_name] = self._read_from_env()
         return instance.__dict__[self.env_name]
 
-    def __set__(self, instance, value):
-        instance.__dict__[self.env_name] = value
-
     def __set_name__(self, owner, name):
         self.attr_name = name
         self.env_name = self.env_name or name
@@ -119,3 +122,6 @@ class EnvironmentVariable:
             setattr(owner, _FIELDS, fields)
         fields = getattr(owner, _FIELDS)
         fields[self.attr_name] = self
+
+    def __repr__(self):
+        return f"<EnvironmentVariable env_name={self.env_name!r}>"

@@ -28,7 +28,16 @@ class EnvironmentVariable:
             DELAY_SECONDS = EnvironmentVariable(default=0, sanitize=int, validate=lambda x: x >= 0)
             FAUX_NAME = EnvironmentVariable(env_name='REAL_NAME')
 
+            def preload_all(self):
+                '''
+                Optionally call this method at the program start-up
+                if you wish to pre-load all environment variables.
+                '''
+                for key in self._envvar_fields_.keys():
+                    getattr(self, key)
+
         conf = ApplicationConfig()
+        conf.preload_all()
 
     Program containing this code will accept environment variables
     **SECRET_KEY**, **DELAY_SECONDS**, and **REAL_NAME**, which can be accessed through
@@ -37,12 +46,6 @@ class EnvironmentVariable:
     Note that the owner class of these environment variable data descriptors
     will also automatically maintaining a dictionary mapping from attribute names
     to these data descriptors via ``_envvar_fields_`` class attribute.
-
-    If you wish to pre-load all environment variables at the program startup,
-    use the following snippets:
-
-        for key in conf._envvar_fields_:
-            getattr(conf, key)  # will force the environment variable lookup to happen
 
     Attributes:
         env_name: Name of the environment variable

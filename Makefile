@@ -10,7 +10,7 @@
 
 # List of written python packages
 PYTHON_PROJECT_PACKAGES := myhelpers
-PYTHON_PROJECT_PACKAGES += mypackage
+PYTHON_PROJECT_PACKAGES += myapp
 
 # Locations to all requirement files that requires pinning down
 REQUIREMENTS_FILES := $(patsubst ./%.in,%.txt,$(shell find . -type f -name '*.in'))
@@ -65,7 +65,7 @@ endif
 ######################
 
 .PHONY: test
-test: flake8 pytest mypy
+test: flake8 pytest
 	@# Run all code quality tools
 
 .PHONY: flake8

@@ -1,2 +1,2 @@
--c ../myutils/requirements.txt
+-c ../myhelpers/requirements.txt
 click~=7.0

@@ -1,4 +1,4 @@
--c myutils/requirements.txt
+-c myhelpers/requirements.txt
 -c myapp/requirements.txt
 -c docs/requirements.txt
 flake8>=3.8.4

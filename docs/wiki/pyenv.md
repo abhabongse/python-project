@@ -52,7 +52,8 @@ Here is the recommended method for Linux distributions:
 
 4. Create a new virtualenv using the path to python binary found in previous step:
    ```bash
-   # virtualenv --python "$(pyenv prefix 3.8.1)/bin/python" venv
+   $ "$(pyenv prefix 3.8.1)/bin/python" -m pip install virtualenv
+   $ "$(pyenv prefix 3.8.1)/bin/python" -m virtualenv venv
    ```
    With the above command, a new directory called `venv` will be created
    and it will bind to the python binary as provided.

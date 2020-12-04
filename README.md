@@ -4,8 +4,7 @@ Template for python project structure (with annotations).
 
 ## Features
 
-- Works with vanilla virtualenv in order to manage the installation of 
-  package package dependencies inside the local development machine.
+- Works with vanilla virtualenv to ensure that python package dependencies can be installed in all environments (local machine, development machine, production, etc.).
 - Development-only python package dependencies are maintained separately
   from those being used in the actual codebase
   (i.e. `dev-requirements.txt` as opposed to `requirements.txt`

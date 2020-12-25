@@ -13,7 +13,7 @@ PYTHON_PROJECT_PACKAGES := myhelpers
 PYTHON_PROJECT_PACKAGES += myapp
 
 # Locations to all requirement files that requires pinning down
-REQUIREMENTS_FILES := $(patsubst ./%.in,%.txt,$(shell find . -type f -name '*.in'))
+REQUIREMENTS_FILES := $(patsubst ./%.in,%.txt,$(shell find . -type f -name '*requirements.in'))
 
 ##########
 ## RECIPES

@@ -1,2 +1,2 @@
 -c ../myhelpers/requirements.txt
-click~=7.0
+click~=7.1

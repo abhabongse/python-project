@@ -5,6 +5,6 @@
 #    pip-compile --output-file=myhelpers/requirements.txt myhelpers/requirements.in
 #
 more-itertools==8.10.0
-    # via -r myhelpers/requirements.in
-pillow==8.3.2
-    # via -r myhelpers/requirements.in
+    # via -r requirements.in
+pillow==9.0.0
+    # via -r requirements.in

@@ -6,10 +6,6 @@
 #
 alabaster==0.7.12
     # via sphinx
-appnope==0.1.2
-    # via
-    #   ipykernel
-    #   ipython
 argon2-cffi==21.1.0
     # via notebook
 attrs==21.2.0
@@ -82,7 +78,7 @@ ipykernel==6.4.1
     #   jupyter-console
     #   notebook
     #   qtconsole
-ipython==7.28.0
+ipython==7.31.1
     # via
     #   ipykernel
     #   ipywidgets

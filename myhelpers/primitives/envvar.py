@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import inspect
 import os
-from collections import Callable
+from collections.abc import Callable
 from typing import Any, Optional
 
 ParseFunc = Callable[[Optional[str]], Any]

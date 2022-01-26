@@ -1,0 +1,70 @@
+[project]
+name = "python-project"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+
+[tool.sphinx-pyproject]
+copyright = "2022, Your Name"
+release = "0.1.0"
+extensions = [
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+    "sphinx.ext.viewcode",
+    "sphinx.ext.todo",
+    "sphinx.ext.intersphinx",
+    "sphinx.ext.autosectionlabel",
+    "sphinx.ext.graphviz",
+    "sphinx.ext.inheritance_diagram",
+    "myst_parser",
+]
+templates_path = ["_templates"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+html_theme = "furo"
+html_static_path = ["_static"]
+
+[tool.poetry]
+# Duplicated from [project] section because poetry has not yet supported
+name = "python-project"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+license = "Apache-2.0"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.0.3"
+more-itertools = "^8.12.0"
+rich = "^11.0.0"
+
+[tool.poetry.group.docs.dependencies]
+furo = ">=2022.1.2"
+myst-parser = ">=0.16.1"
+sphinx = ">=4.4.0"
+sphinx-autobuild = ">=2021.3.14"
+sphinx-pyproject = ">=0.1.0"
+
+[tool.poetry.group.dev.dependencies]
+coverage = "^6.3"
+flake8 = "^4.0.1"
+flake8-assertive = "^2.0.0"
+flake8-bugbear = "^22.1.11"
+flake8-commas = "^2.1.0"
+flake8-comprehensions = "^3.8.0"
+flake8-import-order = "^0.18.1"
+jupyterlab = "^3.2.8"
+pycodestyle = "^2.8.0"
+pyflakes = "^2.4.0"
+pytest = "^6.2.5"
+pytest-cov = "^3.0.0"
+pytest-icdiff = "^0.5"
+pytest-sugar = "^0.9.4"
+pytest-xdist = "^2.5.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

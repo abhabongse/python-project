@@ -1,10 +1,4 @@
-"""
-Main package of the project.
-
-## Dependencies
-
-Python dependencies required for this package is stored inside
-`"requirements.in"` and (by association) `"requirements.txt"` files.
+"""Main package of the project.
 
 ## Command-line usage
 

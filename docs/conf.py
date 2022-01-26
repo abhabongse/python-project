@@ -10,7 +10,7 @@ from sphinx_pyproject import SphinxConfig
 root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Add project root directory to module search paths
-sys.path.insert(0, root_dir)
+sys.path.insert(0, os.path.join(root_dir, "src"))
 
 # Loan configurations from pyproject.toml
 name = None  # will be populated by SphinxConfig

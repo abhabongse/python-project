@@ -37,6 +37,14 @@ readme = "README.md"
 license = "Apache-2.0"
 authors = ["Your Name <you@example.com>"]
 
+[[tool.poetry.packages]]
+include = "myhelpers"
+from = "src"
+
+[[tool.poetry.packages]]
+include = "myapp"
+from = "src"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 click = "^8.0.3"

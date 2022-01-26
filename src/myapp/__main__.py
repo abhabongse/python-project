@@ -8,7 +8,7 @@ from myhelpers.dummy import longest_common_prefix
 @click.argument('snd', metavar='STRING')
 def program(fst, snd):
     """
-    Computes the longest common prefix of both STRINGs.
+    Computes the longest common prefix of both STRING's.
     """
     result = longest_common_prefix(fst, snd)
     print(result)

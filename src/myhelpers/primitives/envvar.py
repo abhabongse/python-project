@@ -1,7 +1,5 @@
-"""
-This module provides a tool for defining
-a list of environment variables accepted by the application
-with a configuration-based pythonic syntax.
+"""This module provides a tool for defining a list of environment variables
+accepted by the application with a configuration-based pythonic syntax.
 """
 from __future__ import annotations
 

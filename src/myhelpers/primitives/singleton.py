@@ -1,5 +1,4 @@
-"""
-Provides metaclass to turn a class into a singleton.
+"""Provides metaclass to turn a class into a singleton.
 """
 from __future__ import annotations
 

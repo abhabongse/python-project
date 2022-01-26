@@ -1,5 +1,4 @@
-"""
-Collection of primitive objects to help writing better python code.
+"""Collection of primitive objects to help writing better python code.
 """
 from __future__ import annotations
 

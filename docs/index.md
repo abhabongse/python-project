@@ -1,4 +1,4 @@
-# Project Name Documentation
+# Documentation
 
 This is the main page of the documentation to your code.
 Feel free to write article or customize all you want.
@@ -8,10 +8,7 @@ Feel free to write article or customize all you want.
 caption: Template Usage Wiki
 maxdepth: 1
 ---
-wiki/howto
-wiki/pyenv
-wiki/customize
-wiki/faqs
+
 ```
 
 ```{toctree}

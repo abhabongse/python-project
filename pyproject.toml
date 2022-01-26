@@ -1,15 +1,17 @@
 [project]
-name = "python-project"
+name = "Project Name"
 version = "0.1.0"
 description = ""
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
-authors = [{ name = "Your Name", email = "you@example.com" }]
+
+[[project.authors]]
+name = "Your Name"
+email = "you@example.com"
 
 [tool.sphinx-pyproject]
 copyright = "2022, Your Name"
-release = "0.1.0"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",

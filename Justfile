@@ -13,7 +13,8 @@ test: flake8 pytest
 
 # Run flake8 linter against source files
 flake8:
-    poetry run flake8
+    poetry run flake8 -v \
+        --application-import-names $(find src -maxdepth 2 -name '__init__.py' -printf '%h\n' | sed 's/^src\///' | paste -sd "," -)
 
 # Run pytest against source files
 pytest +ARGS='-v':

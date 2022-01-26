@@ -4,17 +4,78 @@ name: Python Check
 
 on:
   push:
-    branches: [ main, feature/* ]
+    branches: [main, feature/*]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-  build:
-    name: Python Build
+  poetry-check:
+    name: Poetry check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: "1.2.0a2"
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      - name: Install library
+        run: poetry install --no-interaction
+      - name: Run poetry check
+        run: |
+          poetry check
+  flake8:
+    name: Flake 8 linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: "1.2.0a2"
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v2
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+      - name: Install library
+        run: poetry install --no-interaction
+      - name: Run flake8
+        run: |
+          poetry run flake8 -v --application-import-names $(find src -maxdepth 2 -name '__init__.py' -printf '%h\n' | sed 's/^src\///' | paste -sd "," -)
+  pytest:
+    name: Pytest unit testing
     strategy:
       matrix:
-        python-version: [ "3.10" ]
-    runs-on: ubuntu-latest
+        os: [ubuntu-latest]
+        python-version: ["3.10"]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -39,27 +100,6 @@ jobs:
         run: poetry install --no-interaction --no-root
       - name: Install library
         run: poetry install --no-interaction
-  poetry-check:
-    name: Poetry check
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run poetry check
-        run: |
-          poetry check
-  flake8:
-    name: Flake 8 linting
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run flake8
-        run: |
-          poetry run flake8 -v --application-import-names $(find src -maxdepth 2 -name '__init__.py' -printf '%h\n' | sed 's/^src\///' | paste -sd "," -)
-  pytest:
-    name: Pytest unit testing
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Run pytest
         run: |
           poetry run pytest -vv

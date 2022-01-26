@@ -38,7 +38,7 @@ cleantest:
 # |___/\___/\__\__, \___|_||_|
 #              |___/
 
-# Generate documentation
+# Generate documentation though BUILDER
 docs BUILDER='help':
     poetry run sphinx-build -M {{BUILDER}} docs docs/_build
 
@@ -52,11 +52,11 @@ autodocs:
 # |___/_||_\___/_|  \__\__|\_,_|\__/__/
 # 
 
-# Render markdown file
+# Render markdown FILE
 markdown FILE:
     poetry run python -m rich.markdown -w 119 {{FILE}}
 
-# Syntax highlight source file
+# Syntax highlight source FILE
 syntax FILE:
     poetry run python -m rich.syntax -l -r {{FILE}}
 
@@ -64,3 +64,7 @@ syntax FILE:
 show-tree:
     @git --no-pager log --graph --abbrev-commit --decorate --all \
         --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+
+# Show git diff
+show-diff:
+    @git --no-pager diff "$@" --name-only --diff-filter=d | xargs bat -P --diff --diff-context 5

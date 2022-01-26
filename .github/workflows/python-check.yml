@@ -23,11 +23,10 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
+          version: "1.2.0a2"
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
-      - name: Update Poetry to 1.2
-        run: poetry self update --preview
       - name: Load cached venv
         id: cached-poetry-dependencies
         uses: actions/cache@v2
@@ -58,11 +57,10 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
+          version: "1.2.0a2"
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
-      - name: Update Poetry to 1.2
-        run: poetry self update --preview
       - name: Load cached venv
         id: cached-poetry-dependencies
         uses: actions/cache@v2
@@ -93,11 +91,10 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
+          version: "1.2.0a2"
           virtualenvs-create: true
           virtualenvs-in-project: true
           installer-parallel: true
-      - name: Update Poetry to 1.2
-        run: poetry self update --preview
       - name: Load cached venv
         id: cached-poetry-dependencies
         uses: actions/cache@v2

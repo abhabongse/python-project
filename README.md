@@ -11,7 +11,7 @@ Template for python project structure (with annotations).
   [PEP 517](https://www.python.org/dev/peps/pep-0517/),
   [PEP 621](https://www.python.org/dev/peps/pep-0621/), and
   [PEP 660](https://www.python.org/dev/peps/pep-0660/).
-- Uses [Poetry](https://github.com/python-poetry/poetry) 
+- Uses [Poetry](https://github.com/python-poetry/poetry)
   as build tools to manage package dependencies.
 - Uses [Just](https://github.com/casey/just) for project-specific commands
   (e.g. for testing and linting tools, documentation generation).
@@ -21,7 +21,7 @@ Template for python project structure (with annotations).
 
 ### 1. Poetry
 
-Install Poetry to manage python virtual environments and package dependencies.  
+Install Poetry to manage python virtual environments and package dependencies.
 More information can be read from [Poetry documentation](https://python-poetry.org/docs/master/).
 
 ### 2. Base Python
@@ -38,7 +38,7 @@ Once installed, we can install the desired version of Python (we assume version 
 $ pyenv install 3.10.0
 ```
 - If `pyenv` command is not present, perhaps restart the terminal or machine first.
-- If there are other problems while installing, 
+- If there are other problems while installing,
   [consult the troubleshooting page](https://github.com/pyenv/pyenv/wiki/common-build-problems).
 
 ### 3. Setup virtual environments
@@ -61,7 +61,7 @@ $ just
 
 ## Git Commit Checklist
 
-Before committing changes in Git Repository, 
+Before committing changes in Git Repository,
 please run through the following checklist:
 
 1. Run `just test` to test for code quality

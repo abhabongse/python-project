@@ -50,7 +50,7 @@ autodocs:
 # / __| |_  ___ _ _| |_ __ _  _| |_ ___
 # \__ \ ' \/ _ \ '_|  _/ _| || |  _(_-<
 # |___/_||_\___/_|  \__\__|\_,_|\__/__/
-# 
+#
 
 # Render markdown FILE
 markdown FILE:
@@ -68,3 +68,16 @@ show-tree:
 # Show git diff
 show-diff:
     @git --no-pager diff "$@" --name-only --diff-filter=d | xargs bat -P --diff --diff-context 5
+
+#  ___        _     ___         _        _ _
+# | _ \___ __| |_  |_ _|_ _  __| |_ __ _| | |
+# |  _/ _ (_-<  _|  | || ' \(_-<  _/ _` | | |
+# |_| \___/__/\__| |___|_||_/__/\__\__,_|_|_|
+#
+
+# Run this command after cloning the repo
+post-install: install-pre-commit-hooks
+
+# Install pre-commit hooks
+install-pre-commit-hooks:
+    pre-commit install

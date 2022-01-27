@@ -58,6 +58,12 @@ Once installed, you can see the list of commands by running:
 $ just
 ```
 
+Also, do not forget to run post-installation scripts:
+
+```shell
+$ just post-install
+```
+
 
 ## Git Commit Checklist
 

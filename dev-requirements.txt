@@ -284,9 +284,9 @@ jupyter-client==7.1.2 ; python_full_version >= "3.6.1" and python_version >= "3.
 jupyter-core==4.9.2 ; python_full_version >= "3.6.1" and python_version >= "3.7" or python_version >= "3.6" \
     --hash=sha256:f875e4d27e202590311d468fa55f90c575f201490bd0c18acabe4e318db4a46d \
     --hash=sha256:d69baeb9ffb128b8cd2657fcf2703f89c769d1673c851812119e3a2a0e93ad9a
-jupyter-server==1.13.5 ; python_version >= "3.7" \
-    --hash=sha256:a3eb9d397df2de26134cb24fe7cb5da60ec28b4f8b292e0bdefd450b1f062dd3 \
-    --hash=sha256:9e3e9717eea3bffab8cfb2ff330011be6c8bbd9cdae5b71cef169fcece2f19d3
+jupyter-server==1.15.4 ; python_version >= "3.7" \
+    --hash=sha256:1983a2a71d8709a77da6804ece67ded776c201ba11126de7002d088fb3418c85 \
+    --hash=sha256:94a136b6ed4826ac6a1fab3bfeff8a698a7833578548f78f302ed1ba90b1e534
 jupyterlab-pygments==0.1.2 ; python_version >= "3.7" \
     --hash=sha256:abfb880fd1561987efaefcb2d2ac75145d2a5d0139b1876d5be806e32f630008 \
     --hash=sha256:cfcda0873626150932f438eccf0f8bf22bfa92345b814890ab360d666b254146

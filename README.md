@@ -46,7 +46,7 @@ $ pyenv install 3.10.0
 Use Poetry to create virtual environments and install dependencies:
 
 ```shell
-$ poetry install --dev
+$ poetry install --with dev
 ```
 
 ### 4. Just

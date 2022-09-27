@@ -24,6 +24,9 @@ repos:
       - id: poetry-export
         name: poetry export (dev-requirements.txt)
         args: [ "--with", "dev", "-f", "requirements.txt", "-o", "dev-requirements.txt" ]
+      - id: poetry-export
+        name: poetry export (docs/requirements.txt)
+        args: [ "--with", "docs", "-f", "requirements.txt", "-o", "docs/requirements.txt" ]
   - repo: https://github.com/pycqa/flake8
     rev: "4.0.1"
     hooks:

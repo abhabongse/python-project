@@ -2,6 +2,18 @@
 default:
     @just --list --unsorted
 
+# ___                        _                    __  __           _
+#|   \ ___ _ __  ___ _ _  __| |___ _ _  __ _  _  |  \/  |__ _ _ __| |_
+#| |) / -_) '_ \/ -_) ' \/ _` / -_) ' \/ _| || | | |\/| / _` | '  \  _|
+#|___/\___| .__/\___|_||_\__,_\___|_||_\__|\_, | |_|  |_\__, |_|_|_\__|
+#         |_|                              |__/         |___/
+
+# Export python dependencies in requirements.txt format at appropriate locations
+export-python-packages:
+    poetry export -f requirements.txt -o requirements.txt
+    poetry export --with dev -f requirements.txt -o dev-requirements.txt
+    poetry export --with docs -f requirements.txt -o docs/requirements.txt
+
 #   ___         _        ___            _ _ _          _____         _
 #  / __|___  __| |___   / _ \ _  _ __ _| (_) |_ _  _  |_   _|__  ___| |___
 # | (__/ _ \/ _` / -_) | (_) | || / _` | | |  _| || |   | |/ _ \/ _ \ (_-<

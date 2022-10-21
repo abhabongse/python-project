@@ -18,6 +18,7 @@ repos:
       - id: poetry-lock
         name: poetry lock
         args: [ "--no-update" ]
+      # INSTRUCTION: Remove these hooks if you wish not to produce requirement files
       - id: poetry-export
         name: poetry export (requirements.txt)
         args: [ "-f", "requirements.txt", "-o", "requirements.txt" ]

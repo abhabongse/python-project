@@ -1648,7 +1648,7 @@ test = ["pre-commit", "pytest"]
 name = "typing-extensions"
 version = "4.4.0"
 description = "Backported and Experimental Type Hints for Python 3.7+"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.7"
 
@@ -1697,7 +1697,7 @@ test = ["websockets"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "2a8af20336233ddf5c9bf31be852136b2fc588a80f576ae122a883a6828cc419"
+content-hash = "806e4718f05f1c97f7cf10fc473fb3c4e788db5ff184c787915342ea3e64e4a1"
 
 [metadata.files]
 alabaster = [

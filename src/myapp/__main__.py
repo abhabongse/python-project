@@ -1,6 +1,7 @@
 import click
 
 from myhelpers.dummy import longest_common_prefix
+from myhelpers.primitives.logging import setup_logging
 
 
 @click.command()
@@ -14,4 +15,5 @@ def program(fst, snd):
     print(result)
 
 
+setup_logging()
 program()

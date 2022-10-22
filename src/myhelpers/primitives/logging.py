@@ -1,4 +1,4 @@
-"""Quick logging setup
+"""Quick logging setup.
 """
 from __future__ import annotations
 
@@ -7,11 +7,13 @@ import logging
 import structlog
 
 
-# TODO: Change TimeStamper to a custom made one to allow for timezone formatting
-def configure_base_logging(level=logging.WARNING, time_fmt: str = "iso"):
-    """Configures logging via structlog package
-    and re-routes with native logging module
+def setup_logging(level=logging.WARNING, time_fmt: str = "iso"):
+    """Configures logging via structlog package and re-routes with native logging module.
+
+    This function should be called by the main application as soon as possible
+    and preferably before all other module imports.
     """
+    # TODO: Change TimeStamper to a custom made one to allow for timezone formatting
     shared_processors = [
         # Add log level to event dict
         structlog.stdlib.add_log_level,

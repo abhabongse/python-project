@@ -54,6 +54,7 @@ rich = "^12.5.1"
 structlog = "^22.1.0"
 tomli = "^2.0.1"
 tqdm = "^4.64.1"
+typing-extensions = "^4.4.0"
 
 [tool.poetry.group.docs.dependencies]
 furo = ">=2022.6.21"

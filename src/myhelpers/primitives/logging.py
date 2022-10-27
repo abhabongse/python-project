@@ -14,6 +14,7 @@ def setup_logging(level=logging.WARNING, time_fmt: str = "iso"):
     and preferably before all other module imports.
     """
     # TODO: Change TimeStamper to a custom made one to allow for timezone formatting
+    # TODO: Options to modify logging config through file path or environment variable
     shared_processors = [
         # Add log level to event dict
         structlog.stdlib.add_log_level,

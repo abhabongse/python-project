@@ -33,9 +33,9 @@ First, [following these instructions to install `pyenv`](https://github.com/pyen
 For Linux distributions, we recommend the [automatic installer](https://github.com/pyenv/pyenv-installer) options.
 Make sure to follow the instructions closely and add `pyenv` bin directories to `$PATH`.
 
-Once installed, we can install the desired version of Python (we assume version `3.10.0` here):
+Once installed, we can install the desired version of Python (we assume version `3.12.0` here):
 ```shell
-$ pyenv install 3.10.0
+$ pyenv install 3.12.0
 ```
 - If `pyenv` command is not present, perhaps restart the terminal or machine first.
 - If there are other problems while installing,

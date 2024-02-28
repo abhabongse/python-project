@@ -56,7 +56,7 @@ def setup_logging(level=logging.WARNING, time_fmt: str = "iso"):
                     structlog.processors.CallsiteParameter.FILENAME,
                     structlog.processors.CallsiteParameter.FUNC_NAME,
                     structlog.processors.CallsiteParameter.LINENO,
-                }
+                },
             ),
             # Remove _record & _from_structlog
             structlog.stdlib.ProcessorFormatter.remove_processors_meta,

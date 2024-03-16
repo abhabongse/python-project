@@ -21,7 +21,7 @@ class SingletonMeta(type):
         assert world_a is world_b  # True
     """
 
-    _instances = {}
+    _instances: dict[type, object] = {}
 
     def __call__(cls, *args, **kwargs):
         """

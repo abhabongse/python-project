@@ -15,7 +15,7 @@ def longest_common_prefix(fst: str, snd: str) -> str:
         Longest common prefix string
     """
     bound = 0
-    for a, b in zip(fst, snd):
+    for a, b in zip(fst, snd, strict=False):
         if a != b:
             break
         bound += 1

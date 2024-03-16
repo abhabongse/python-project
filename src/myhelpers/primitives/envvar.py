@@ -69,19 +69,19 @@ class EnvVariable:
             use ``lambda x: x > 0`` as the validation function.
     """
     attr_name: Optional[str]
-    env_name: str
+    env_name: str | None
     required: bool
     default: Any
-    parse: ParseFunc
-    validate: ValidateFunc
+    parse: ParseFunc | None
+    validate: ValidateFunc | None
 
     def __init__(
             self,
-            env_name: str = None,
+            env_name: str | None = None,
             required: bool = False,
             default: Any = None,
-            parse: ParseFunc = None,
-            validate: ValidateFunc = None,
+            parse: ParseFunc | None = None,
+            validate: ValidateFunc | None = None,
     ):
         self.attr_name = None
         self.env_name = env_name

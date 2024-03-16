@@ -3,12 +3,15 @@ name = "My Project"
 version = "0.1.0"
 description = ""
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 license = "Apache-2.0"
 
 [[project.authors]]
 name = "Your Name"
 email = "you@example.com"
+
+[tool.mypy]
+python_version = "3.12"
 
 [tool.sphinx-pyproject]
 copyright = "2022, Your Name"
@@ -54,6 +57,7 @@ rich = "^13.7.0"
 structlog = "^24.1.0"
 tomli = "^2.0.1"
 tqdm = "^4.66.2"
+types-tqdm = "^4.66.0"
 typing-extensions = "^4.10.0"
 
 [tool.poetry.group.docs.dependencies]
@@ -70,6 +74,8 @@ flake8-bugbear = "^24.2.6"
 flake8-commas = "^2.1.0"
 flake8-import-order = "^0.18.2"
 jupyterlab = "^4.1.1"
+mypy = "^1.9.0"
+mypy-extensions = "^1.0.0"
 pycodestyle = "^2.11.1"
 pyflakes = "^3.2.0"
 pytest = "^8.0.1"

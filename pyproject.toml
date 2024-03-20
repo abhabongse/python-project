@@ -12,6 +12,9 @@ email = "you@example.com"
 
 [tool.mypy]
 python_version = "3.12"
+overrides = [
+    { module = "logging.*", ignore_errors = true },
+]
 
 [tool.sphinx-pyproject]
 copyright = "2022, Your Name"
@@ -73,9 +76,11 @@ flake8 = "^7.0.0"
 flake8-bugbear = "^24.2.6"
 flake8-commas = "^2.1.0"
 flake8-import-order = "^0.18.2"
+jupyter-console = "^6.6.3"
 jupyterlab = "^4.1.1"
 mypy = "^1.9.0"
 mypy-extensions = "^1.0.0"
+notebook = "^7.1.2"
 pycodestyle = "^2.11.1"
 pyflakes = "^3.2.0"
 pytest = "^8.0.1"

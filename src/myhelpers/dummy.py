@@ -4,8 +4,7 @@ from __future__ import annotations
 
 
 def longest_common_prefix(fst: str, snd: str) -> str:
-    """
-    Finds the longest prefix shared by both input strings.
+    """Finds the longest prefix shared by both input strings.
 
     Args:
         fst: First string

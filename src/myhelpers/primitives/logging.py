@@ -8,8 +8,8 @@ import json
 import logging
 import logging.config
 import logging.handlers
-import tomllib
-import zoneinfo
+import tomllib  # noqa: I
+import zoneinfo  # noqa: I
 from os import PathLike
 from typing import Any, Literal, override
 
@@ -19,7 +19,7 @@ from rich.theme import Theme
 __all__ = ["setup_logging", "RichFormatter", "JSONFormatter"]
 
 _LOG_RECORD_BUILTIN_ATTRS = logging.LogRecord(
-    "name", 0, "pathname", 0, "msg", (), None
+    "name", 0, "pathname", 0, "msg", (), None,
 ).__dict__.keys() | ["asctime"]
 
 THEME = Theme({
@@ -116,7 +116,7 @@ class JSONFormatter(logging.Formatter):
             "message": record.getMessage(),
             "timestamp": (dt.datetime.fromtimestamp(record.created, tz=dt.timezone.utc)
                           .astimezone(zoneinfo.ZoneInfo(self.timezone))
-                          .strftime(self.datefmt)),
+                          .strftime(self.datefmt or "%Y-%m-%dT%H:%M:%S%z")),
         }
         if record.exc_info:
             always_fields["exc_info"] = self.formatException(record.exc_info)

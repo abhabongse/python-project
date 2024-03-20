@@ -64,6 +64,21 @@ def setup_logging(config_file: str | PathLike[str] | None = None, fallback_level
             atexit.register(handler.listener.stop)  # type: ignore
 
 
+class RichFormatter(logging.Formatter):
+    """
+    Custom log formatter that outputs log records using the Rich library.
+    """
+
+    def __init__(self):
+        # TODO: Implement RichFormatter
+        #       Consult the Rich documentation (esp. on Table) for details on how to use it
+        super().__init__()
+        raise NotImplementedError("RichFormatter is not implemented yet.")
+
+    def format(self, record: logging.LogRecord) -> str:
+        raise NotImplementedError("RichFormatter is not implemented yet.")
+
+
 class JSONFormatter(logging.Formatter):
     """
     Custom log formatter that outputs log records as JSON.

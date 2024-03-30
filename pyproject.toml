@@ -24,14 +24,12 @@ quote-style = "preserve"
 skip-magic-trailing-comma = true
 
 [tool.ruff.lint]
-ignore = ["COM812", "ISC001"]
+ignore = ["COM812", "ISC001"]  # conflicting with ruff formatter
 select = [
-    "F", "E", "W", "C90", "I", "UP", "ASYNC",
-    "S", "BLE", "FBT003", "B", "A", "COM", "C4", "FA",
-    "ISC", "ICN", "G", "PT", "RSE", "RET", "SLOT",
-    "SIM101", "SIM105", "SIM107", "SIM110", "SIM113",
-    "SIM115", "SIM117", "SIM118", "SIM2", "SIM3",
-    "SIM4", "SIM9", "TID", "TCH", "PTH", "PD", "PGH",
+    "F", "E", "W", "C90", "I", "UP", "ASYNC", "S", "BLE", "FBT003", "B", "A",
+    "COM", "C4", "FA", "ISC", "ICN", "G", "PT", "RSE", "RET", "SLOT",
+    "SIM101", "SIM105", "SIM107", "SIM110", "SIM113", "SIM115", "SIM117",
+    "SIM118", "SIM2", "SIM3", "SIM4", "SIM9", "TID", "TCH", "PTH", "PD", "PGH",
     "PL", "FLY", "PERF", "RUF",
 ]
 

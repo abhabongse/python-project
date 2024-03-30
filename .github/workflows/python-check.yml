@@ -9,7 +9,13 @@ on:
     branches: [ main ]
 
 jobs:
-  poetry-check:
+  ruff:
+    name: Ruff code linting and formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chartboost/ruff-action@v1
+  poetry:
     name: Poetry check
     runs-on: ubuntu-latest
     steps:
@@ -39,12 +45,6 @@ jobs:
       - name: Run poetry check
         run: |
           poetry check
-  ruff:
-    name: Ruff code linting and formatting
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: chartboost/ruff-action@v1
   pytest:
     name: Pytest unit testing
     strategy:

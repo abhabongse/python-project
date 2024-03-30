@@ -10,6 +10,65 @@ license = "Apache-2.0"
 name = "Your Name"
 email = "you@example.com"
 
+[tool.ruff]
+extend-exclude = ["venv", ".venv"]
+extend-include = ["*.ipynb"]
+line-length = 120
+required-version = ">=0.3.4"
+src = ["src", "tests"]
+target-version = "py312"
+
+[tool.ruff.format]
+line-ending = "lf"
+quote-style = "preserve"
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint]
+ignore = ["COM812", "ISC001"]
+select = [
+    "F", "E", "W", "C90", "I", "UP", "ASYNC",
+    "S", "BLE", "FBT003", "B", "A", "COM", "C4", "FA",
+    "ISC", "ICN", "G", "PT", "RSE", "RET", "SLOT",
+    "SIM101", "SIM105", "SIM107", "SIM110", "SIM113",
+    "SIM115", "SIM117", "SIM118", "SIM2", "SIM3",
+    "SIM4", "SIM9", "TID", "TCH", "PTH", "PD", "PGH",
+    "PL", "FLY", "PERF", "RUF",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
+
+[tool.ruff.lint.flake8-annotations]
+ignore-fully-untyped = true
+mypy-init-return = true
+
+[tool.ruff.lint.flake8-gettext]
+extend-function-names = ["ugettetxt"]
+
+[tool.ruff.lint.flake8-import-conventions.extend-aliases]
+datetime = "dt"
+
+[tool.ruff.lint.flake8-quotes]
+avoid-escape = false
+
+[tool.ruff.lint.flake8-type-checking]
+exempt-modules = ["typing", "typing_extensions"]
+strict = true
+
+[tool.ruff.lint.mccabe]
+max-complexity = 12
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+required-imports = ["from __future__ import annotations"]
+split-on-trailing-comma = false
+
+[tool.ruff.lint.pycodestyle]
+ignore-overlong-task-comments = true
+
+[tool.ruff.lint.pylint]
+max-args = 8
+
 [tool.mypy]
 python_version = "3.12"
 overrides = [
@@ -72,10 +131,6 @@ sphinx-pyproject = ">=0.3.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.4.1"
-flake8 = "^7.0.0"
-flake8-bugbear = "^24.2.6"
-flake8-commas = "^2.1.0"
-flake8-import-order = "^0.18.2"
 jupyter-console = "^6.6.3"
 jupyterlab = "^4.1.1"
 mypy = "^1.9.0"
@@ -88,6 +143,7 @@ pytest-cov = "^4.1.0"
 pytest-icdiff = "^0.9"
 pytest-sugar = "^1.0.0"
 pytest-xdist = "^3.5.0"
+ruff = "^0.3.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

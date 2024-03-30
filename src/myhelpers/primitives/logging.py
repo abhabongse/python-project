@@ -1,5 +1,5 @@
-"""Quick logging setup.
-"""
+"""Quick logging setup."""
+
 from __future__ import annotations
 
 import atexit
@@ -8,36 +8,39 @@ import json
 import logging
 import logging.config
 import logging.handlers
-import tomllib  # noqa: I
-import zoneinfo  # noqa: I
-from os import PathLike
-from typing import Any, Literal, override
+import tomllib
+import zoneinfo
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, Literal, override
 
 from rich.style import Style
 from rich.theme import Theme
 
+if TYPE_CHECKING:
+    from os import PathLike
+
 __all__ = ["setup_logging", "RichFormatter", "JSONFormatter"]
 
-_LOG_RECORD_BUILTIN_ATTRS = logging.LogRecord(
-    "name", 0, "pathname", 0, "msg", (), None,
-).__dict__.keys() | ["asctime"]
+_LOG_RECORD_BUILTIN_ATTRS = logging.LogRecord("name", 0, "pathname", 0, "msg", (), None).__dict__.keys() | ["asctime"]
 
-THEME = Theme({
-    "log.timestamp": Style(color="cyan", dim=True),
-    "log.level": Style.null(),
-    "log.level.critical": Style(color="red"),
-    "log.level.exception": Style(color="red"),
-    "log.level.error": Style(color="red"),
-    "log.level.warning": Style(color="yellow"),
-    "log.level.info": Style(color="cyan"),
-    "log.level.debug": Style(color="green"),
-    "log.level.notset": Style(bgcolor="red"),
-    "log.message": Style.null(),
-    "log.logger_name": Style(color="blue"),
-    "log.path": Style(dim=True),
-    "log.extra.key": Style(color="cyan"),
-    "log.extra.value": Style(color="magenta"),
-})
+THEME = Theme(
+    {
+        "log.timestamp": Style(color="cyan", dim=True),
+        "log.level": Style.null(),
+        "log.level.critical": Style(color="red"),
+        "log.level.exception": Style(color="red"),
+        "log.level.error": Style(color="red"),
+        "log.level.warning": Style(color="yellow"),
+        "log.level.info": Style(color="cyan"),
+        "log.level.debug": Style(color="green"),
+        "log.level.notset": Style(bgcolor="red"),
+        "log.message": Style.null(),
+        "log.logger_name": Style(color="blue"),
+        "log.path": Style(dim=True),
+        "log.extra.key": Style(color="cyan"),
+        "log.extra.value": Style(color="magenta"),
+    }
+)
 
 
 def setup_logging(config_file: str | PathLike[str] | None = None, fallback_level: int = logging.WARNING):
@@ -54,14 +57,14 @@ def setup_logging(config_file: str | PathLike[str] | None = None, fallback_level
             datefmt="%Y-%m-%d %H:%M:%S",
         )
         return
-    with open(config_file, "rb") as f:
+    with Path(config_file).expanduser().resolve(strict=True).open("rb") as f:
         config = tomllib.load(f)
     logging.config.dictConfig(config)
     for handler_name in logging.getHandlerNames():
         handler = logging.getHandlerByName(handler_name)
         if isinstance(handler, logging.handlers.QueueHandler):
-            handler.listener.start()  # type: ignore
-            atexit.register(handler.listener.stop)  # type: ignore
+            handler.listener.start()  # type: ignore[attr-defined]
+            atexit.register(handler.listener.stop)  # type: ignore[attr-defined]
 
 
 class RichFormatter(logging.Formatter):
@@ -83,6 +86,7 @@ class JSONFormatter(logging.Formatter):
     """
     Custom log formatter that outputs log records as JSON.
     """
+
     #: Mapping of JSON keys to internal LogRecord attributes
     fields: dict[str, str]
     #: Timezone string to use for formatting timestamps (must be compatible with `zoneinfo.ZoneInfo`)
@@ -93,12 +97,12 @@ class JSONFormatter(logging.Formatter):
     include_extra: Literal["nested", "flatten"] | None
 
     def __init__(
-            self,
-            *,
-            fields: dict[str, str] | None = None,
-            datefmt: str = "%Y-%m-%dT%H:%M:%S%z",
-            timezone: str = "UTC",
-            include_extra: Literal["nested", "flatten"] | None = None,
+        self,
+        *,
+        fields: dict[str, str] | None = None,
+        datefmt: str = "%Y-%m-%dT%H:%M:%S%z",
+        timezone: str = "UTC",
+        include_extra: Literal["nested", "flatten"] | None = None,
     ):
         super().__init__(datefmt=datefmt)
         self.fields = fields or {}
@@ -114,9 +118,11 @@ class JSONFormatter(logging.Formatter):
         # Four fields are always present in the log record: message, timestamp, exc_info, and stack_info
         always_fields = {
             "message": record.getMessage(),
-            "timestamp": (dt.datetime.fromtimestamp(record.created, tz=dt.timezone.utc)
-                          .astimezone(zoneinfo.ZoneInfo(self.timezone))
-                          .strftime(self.datefmt or "%Y-%m-%dT%H:%M:%S%z")),
+            "timestamp": (
+                dt.datetime.fromtimestamp(record.created, tz=dt.UTC)
+                .astimezone(zoneinfo.ZoneInfo(self.timezone))
+                .strftime(self.datefmt or "%Y-%m-%dT%H:%M:%S%z")
+            ),
         }
         if record.exc_info:
             always_fields["exc_info"] = self.formatException(record.exc_info)
@@ -124,9 +130,7 @@ class JSONFormatter(logging.Formatter):
             always_fields["stack_info"] = self.formatStack(record.stack_info)
 
         message = {
-            name: (value
-                   if (value := always_fields.pop(field, None)) is not None
-                   else getattr(record, field))
+            name: (value if (value := always_fields.pop(field, None)) is not None else getattr(record, field))
             for name, field in self.fields.items()
         }
         message.update(always_fields)
@@ -139,8 +143,4 @@ class JSONFormatter(logging.Formatter):
         return message
 
     def _prepare_extras(self, record: logging.LogRecord) -> dict[str, Any]:
-        return {
-            key: value
-            for key, value in record.__dict__.items()
-            if key not in _LOG_RECORD_BUILTIN_ATTRS
-        }
+        return {key: value for key, value in record.__dict__.items() if key not in _LOG_RECORD_BUILTIN_ATTRS}

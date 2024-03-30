@@ -20,13 +20,16 @@ export-python-packages:
 #  \___\___/\__,_\___|  \__\_\\_,_\__,_|_|_|\__|\_, |   |_|\___/\___/_/__/
 #                                               |__/
 
-# Run tests against source files (flake8 and pytest)
-check: flake8 mypy pytest
+# Run tests against source files
+check: ruff mypy pytest
 
-# Run flake8 linter against source files
-flake8:
-    poetry run flake8 -v \
-        --application-import-names $(find src -maxdepth 2 -name '__init__.py' -printf '%h\n' | sed 's/^src\///' | paste -sd "," -)
+# Format code
+format:
+    ruff check --fix && ruff format
+
+# Check code with ruff
+ruff:
+    ruff check
 
 # Type checking on all Python source files
 mypy:
@@ -81,6 +84,7 @@ syntax FILE:
 show-tree:
     @git --no-pager log --graph --abbrev-commit --decorate --all \
         --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    @echo
 
 #  ___        _     ___         _        _ _
 # | _ \___ __| |_  |_ _|_ _  __| |_ __ _| | |

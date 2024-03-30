@@ -1,14 +1,15 @@
 """This module provides a tool for defining a list of environment variables
 accepted by the application with a configuration-based pythonic syntax.
 """
+
 from __future__ import annotations
 
 import inspect
 import os
 from collections.abc import Callable
-from typing import Any, Optional
+from typing import Any
 
-ParseFunc = Callable[[Optional[str]], Any]
+ParseFunc = Callable[[str | None], Any]
 ValidateFunc = Callable[[Any], bool]
 
 _FIELDS = '_envvar_fields_'
@@ -68,7 +69,8 @@ class EnvVariable:
             For example, to enforce that the parsed value must be positive,
             use ``lambda x: x > 0`` as the validation function.
     """
-    attr_name: Optional[str]
+
+    attr_name: str | None
     env_name: str | None
     required: bool
     default: Any
@@ -76,12 +78,12 @@ class EnvVariable:
     validate: ValidateFunc | None
 
     def __init__(
-            self,
-            env_name: str | None = None,
-            required: bool = False,
-            default: Any = None,
-            parse: ParseFunc | None = None,
-            validate: ValidateFunc | None = None,
+        self,
+        env_name: str | None = None,
+        required: bool = False,
+        default: Any = None,
+        parse: ParseFunc | None = None,
+        validate: ValidateFunc | None = None,
     ):
         self.attr_name = None
         self.env_name = env_name
@@ -101,7 +103,7 @@ class EnvVariable:
         if self.attr_name:
             raise RuntimeError(
                 f"cannot recycle the descriptor bound to attribute {name!r}, "
-                f"previously bound to attribute {self.attr_name!r}",
+                f"previously bound to attribute {self.attr_name!r}"
             )
         self.attr_name = name
         self.env_name = self.env_name or name
@@ -112,8 +114,7 @@ class EnvVariable:
         if value is None:
             if self.required:
                 raise RuntimeError(f"missing env variable: {self.env_name!r}")
-            else:
-                return self.default
+            return self.default
         if self.parse:
             value = self.parse(value)
         if self.validate and not self.validate(value):
@@ -123,7 +124,7 @@ class EnvVariable:
                 func_alias = f"\n\t{inspect.getsource(self.validate).strip()}"
             raise RuntimeError(
                 f"env variable {self.env_name!r} has the value {value!r} "
-                f"which does not satisfy the validation function:{func_alias}",
+                f"which does not satisfy the validation function:{func_alias}"
             )
         return value
 

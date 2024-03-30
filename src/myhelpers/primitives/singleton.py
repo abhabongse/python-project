@@ -1,6 +1,8 @@
-"""Provides metaclass to turn a class into a singleton.
-"""
+"""Provides metaclass to turn a class into a singleton."""
+
 from __future__ import annotations
+
+from typing import ClassVar
 
 
 class SingletonMeta(type):
@@ -21,7 +23,7 @@ class SingletonMeta(type):
         assert world_a is world_b  # True
     """
 
-    _instances: dict[type, object] = {}
+    _instances: ClassVar[dict[type, object]] = {}
 
     def __call__(cls, *args, **kwargs):
         """

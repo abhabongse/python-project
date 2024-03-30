@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
+from __future__ import annotations
+
 import logging
-import os
+from pathlib import Path
 
 import click
 
 from myhelpers.dummy import longest_common_prefix
 from myhelpers.primitives.logging import setup_logging
 
-this_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = Path(__file__).resolve().parents[1]
 logger = logging.getLogger("main")
 
 

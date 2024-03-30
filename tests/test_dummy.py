@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import pytest
 
 from myhelpers.dummy import longest_common_prefix

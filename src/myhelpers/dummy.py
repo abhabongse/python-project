@@ -1,5 +1,5 @@
-"""Dummy module to illustrate the python project structure.
-"""
+"""Dummy module to illustrate the python project structure."""
+
 from __future__ import annotations
 
 

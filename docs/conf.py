@@ -4,19 +4,20 @@ from __future__ import annotations
 import datetime as dt
 import os
 import sys
+from pathlib import Path
 
 from sphinx_pyproject import SphinxConfig
 
-root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+root_dir = Path(__file__).resolve().parents[1]
 
 # Add project root directory to module search paths
-sys.path.insert(0, os.path.join(root_dir, "src"))
+sys.path.insert(0, os.fspath(root_dir / "src"))
 
 # Loan configurations from pyproject.toml
 name = None  # will be populated by SphinxConfig
 author = None  # will be populated by SphinxConfig
 version = None  # will be populated by SphinxConfig
-config = SphinxConfig(os.path.join(root_dir, "pyproject.toml"), globalns=globals())
+config = SphinxConfig(root_dir / "pyproject.toml", globalns=globals())
 
 # Additional configurations
 project = name

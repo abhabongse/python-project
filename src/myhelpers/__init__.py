@@ -1,2 +1,1 @@
-"""Common helper package for the project.
-"""
+"""Common helper package for the project."""

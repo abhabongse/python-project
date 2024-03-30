@@ -40,12 +40,11 @@ jobs:
         run: |
           poetry check
   ruff:
+    name: Ruff code linting and formatting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: chartboost/ruff-action@v1
-        with:
-          src: "./src"
   pytest:
     name: Pytest unit testing
     strategy:

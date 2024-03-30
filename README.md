@@ -2,7 +2,6 @@
 
 Template for python project structure (with annotations).
 
-
 ## Features
 
 - Uses [`pyproject.toml`](https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/)
@@ -15,7 +14,6 @@ Template for python project structure (with annotations).
   as build tools to manage package dependencies.
 - Uses [Just](https://github.com/casey/just) for project-specific commands
   (e.g. for testing and linting tools, documentation generation).
-
 
 ## Local Development Setup
 
@@ -34,9 +32,11 @@ For Linux distributions, we recommend the [automatic installer](https://github.c
 Make sure to follow the instructions closely and add `pyenv` bin directories to `$PATH`.
 
 Once installed, we can install the desired version of Python (we assume version `3.12.0` here):
+
 ```shell
 $ pyenv install 3.12.0
 ```
+
 - If `pyenv` command is not present, perhaps restart the terminal or machine first.
 - If there are other problems while installing,
   [consult the troubleshooting page](https://github.com/pyenv/pyenv/wiki/common-build-problems).
@@ -64,14 +64,14 @@ Also, do not forget to run post-installation scripts:
 $ just post-install
 ```
 
-
 ## Git Commit Checklist
 
 Before committing changes in Git Repository,
 please run through the following checklist:
 
-1. Run `just test` to test for code quality
-   (such as `flake8` code lint, `pytest` unit tests, etc.)
+1. Run `just check` to test for code quality
+   (such as `ruff` code lint, `mypy` type checking, `pytest` unit tests, etc.)
    Fix any complaints until there is no error message.
-2. Run `git status` to see the status of file changes.
+2. Run `just format` to format the code with `ruff` code formatter.
+3. Run `git status` to see the status of file changes.
    Verify with your eye that it is what is expected.

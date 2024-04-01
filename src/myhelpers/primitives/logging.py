@@ -94,7 +94,7 @@ class JSONFormatter(logging.Formatter):
     #: Whether to include extra fields in the log record:
     #: - `"nested"` to include them in a separate "extras" field
     #: - `"flatten"` to include them as top-level fields
-    include_extra: Literal["nested", "flatten"] | None
+    include_extra: Literal["nested", "flatten", None]
 
     def __init__(
         self,
@@ -102,7 +102,7 @@ class JSONFormatter(logging.Formatter):
         fields: dict[str, str] | None = None,
         datefmt: str = "%Y-%m-%dT%H:%M:%S%z",
         timezone: str = "UTC",
-        include_extra: Literal["nested", "flatten"] | None = None,
+        include_extra: Literal["nested", "flatten", None] = None,
     ):
         super().__init__(datefmt=datefmt)
         self.fields = fields or {}

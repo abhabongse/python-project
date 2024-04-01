@@ -23,13 +23,17 @@ export-python-packages:
 # Run tests against source files
 check: ruff mypy pytest
 
-# Format code
-format:
-    ruff check --fix && ruff format
-
 # Check code with ruff
 ruff:
     ruff check
+
+# Watch for code changes and run check with ruff
+ruff-watch:
+    ruff check --watch
+
+# Format code
+ruff-format:
+    ruff check --fix && ruff format
 
 # Type checking on all Python source files
 mypy:
@@ -83,8 +87,7 @@ syntax FILE:
 # Show git log tree
 show-tree:
     @git --no-pager log --graph --abbrev-commit --decorate --all \
-        --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
-    @echo
+        --format=tformat:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
 
 #  ___        _     ___         _        _ _
 # | _ \___ __| |_  |_ _|_ _  __| |_ __ _| | |

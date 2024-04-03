@@ -21,23 +21,19 @@ export-python-packages:
 #                                               |__/
 
 # Run tests against source files
-check: ruff mypy pytest
+check: ruff pyright pytest
+
+# Format code using ruff
+format:
+    ruff check --fix && ruff format
 
 # Check code with ruff
 ruff:
     ruff check
 
-# Watch for code changes and run check with ruff
-ruff-watch:
-    ruff check --watch
-
-# Format code
-ruff-format:
-    ruff check --fix && ruff format
-
 # Type checking on all Python source files
-mypy:
-    mypy src
+pyright:
+    pyright
 
 # Run pytest against source files
 pytest +ARGS='-v':

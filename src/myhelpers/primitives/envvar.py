@@ -110,7 +110,7 @@ class EnvVariable:
         self._add_to_owner(owner_cls, name)
 
     def _read_from_env(self):
-        value = os.getenv(self.env_name)
+        value = os.getenv(self.env_name) if self.env_name else None
         if value is None:
             if self.required:
                 raise RuntimeError(f"missing env variable: {self.env_name!r}")

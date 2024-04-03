@@ -67,11 +67,8 @@ ignore-overlong-task-comments = true
 [tool.ruff.lint.pylint]
 max-args = 8
 
-[tool.mypy]
-python_version = "3.12"
-overrides = [
-    { module = "logging.*", ignore_errors = true },
-]
+[tool.pyright]
+pythonVersion = "3.12"
 
 [tool.sphinx-pyproject]
 copyright = "2022, Your Name"
@@ -132,8 +129,7 @@ sphinx-pyproject = ">=0.3.0"
 coverage = "^7.4.1"
 jupyter-console = "^6.6.3"
 jupyterlab = "^4.1.1"
-mypy = "^1.9.0"
-mypy-extensions = "^1.0.0"
+pyright = "^1.1"
 notebook = "^7.1.2"
 pytest = "^8.0.1"
 pytest-cov = "^4.1.0"

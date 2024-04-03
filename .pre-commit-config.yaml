@@ -22,6 +22,10 @@ repos:
       - id: ruff
         args: [ --fix ]
       - id: ruff-format
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.357
+    hooks:
+    - id: pyright
   - repo: https://github.com/python-poetry/poetry
     rev: '1.8.2'
     hooks:

@@ -28,12 +28,12 @@ format:
     ruff check --fix && ruff format
 
 # Check code with ruff
-ruff:
-    ruff check
+ruff +ARGS='check':
+    ruff {{ARGS}}
 
 # Type checking on all Python source files
-pyright:
-    pyright
+pyright +ARGS='':
+    pyright {{ARGS}}
 
 # Run pytest against source files
 pytest +ARGS='-v':
@@ -58,13 +58,13 @@ cleantest:
 # |___/\___/\__\__, \___|_||_|
 #              |___/
 
-# Generate documentation though BUILDER
-docs BUILDER='help':
-    poetry run sphinx-build -M {{BUILDER}} docs docs/_build
+# Generate static-site documentation using mkdocs
+docs:
+    mkdocs build
 
-# Generate live HTML view of documentation
-autodocs:
-    poetry run sphinx-autobuild -b html docs docs/_build/livehtml
+# Live preview of documentation site
+docs-dev:
+    mkdocs serve
 
 #  ___ _            _           _
 # / __| |_  ___ _ _| |_ __ _  _| |_ ___

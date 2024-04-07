@@ -70,24 +70,6 @@ max-args = 8
 [tool.pyright]
 pythonVersion = "3.12"
 
-[tool.sphinx-pyproject]
-copyright = "2022, Your Name"
-extensions = [
-    "sphinx.ext.autodoc",
-    "sphinx.ext.napoleon",
-    "sphinx.ext.viewcode",
-    "sphinx.ext.todo",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.autosectionlabel",
-    "sphinx.ext.graphviz",
-    "sphinx.ext.inheritance_diagram",
-    "myst_parser",
-]
-templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-html_theme = "furo"
-html_static_path = ["_static"]
-
 [tool.poetry]
 # Duplicated from [project] section because poetry has not yet supported
 name = "my-project"
@@ -120,8 +102,10 @@ types-tqdm = "^4.66.0"
 typing-extensions = "^4.11.0"
 
 [tool.poetry.group.docs.dependencies]
-mkdocs-material = ">=9.5.17"
+mkdocs-glightbox = "^0.3.7"
+mkdocs-material = { version = ">=9.5.17", extras = ["imaging"] }
 mkdocstrings = { version = ">=0.24.3", extras = ["python"] }
+pygments = "^2.17.2"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.4.4"

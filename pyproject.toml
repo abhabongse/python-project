@@ -10,10 +10,81 @@ license = "Apache-2.0"
 name = "Your Name"
 email = "you@example.com"
 
+[tool.poetry]
+# Duplicated from [project] section because poetry has not yet supported
+name = "my-project"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+license = "Apache-2.0"
+authors = ["Your Name <you@example.com>"]
+
+[[tool.poetry.packages]]
+include = "myhelpers"
+from = "src"
+
+[[tool.poetry.packages]]
+include = "myapp"
+from = "src"
+
+[tool.poetry.scripts]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+attrs = "^23.2.0"
+click = "^8.1.7"
+more-itertools = "^10.2.0"
+polars = { version = "^0.20.31", extras = ["pyarrow", "fsspec", "connectorx", "xlsx2csv", "plot", "style"] }
+prompt-toolkit = "^3.0.43"
+python-dotenv = "^1.0.1"
+rich = "^13.7.1"
+textual = "^0.71.0"
+tomli = "^2.0.1"
+tqdm = "^4.66.2"
+typer = "^0.12.3"
+types-tqdm = "^4.66.0"
+typing-extensions = "^4.11.0"
+
+[tool.poetry.group.docs.dependencies]
+mkdocs-glightbox = "^0.3.7"
+mkdocs-material = { version = ">=9.5.17", extras = ["imaging"] }
+mkdocstrings = { version = ">=0.24.3", extras = ["python"] }
+pygments = "^2.17.2"
+
+[tool.poetry.group.dev.dependencies]
+coverage = "^7.4.4"
+jupyter-console = "^6.6.3"
+jupyterlab = "^4.1.5"
+pyright = "^1.1.357"
+notebook = "^7.1.2"
+pytest = "^8.1.1"
+pytest-cov = "^5.0.0"
+pytest-icdiff = "^0.9"
+pytest-sugar = "^1.0.0"
+pytest-xdist = "^3.5.0"
+ruff = ">=0.5.0,<1"
+ruff-lsp = ">=0.0.53,<1"
+textual-dev = "^1.5.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+#   ____          _         ___              _ _ _           _____           _
+#  / ___|___   __| | ___   / _ \ _   _  __ _| (_) |_ _   _  |_   _|__   ___ | |___
+# | |   / _ \ / _` |/ _ \ | | | | | | |/ _` | | | __| | | |   | |/ _ \ / _ \| / __|
+# | |__| (_) | (_| |  __/ | |_| | |_| | (_| | | | |_| |_| |   | | (_) | (_) | \__ \
+#  \____\___/ \__,_|\___|  \__\_\\__,_|\__,_|_|_|\__|\__, |   |_|\___/ \___/|_|___/
+#                                                    |___/
+
+[tool.pyright]
+ignore = ["vendor"]
+pythonVersion = "3.12"
+
 [tool.ruff]
-extend-exclude = ["venv", ".venv"]
+extend-exclude = ["venv", ".venv", "vendor"]
 extend-include = ["*.ipynb"]
-line-length = 120
+line-length = 119
 required-version = ">=0.3.4"
 src = ["src", "tests"]
 target-version = "py312"
@@ -66,62 +137,3 @@ ignore-overlong-task-comments = true
 
 [tool.ruff.lint.pylint]
 max-args = 8
-
-[tool.pyright]
-pythonVersion = "3.12"
-
-[tool.poetry]
-# Duplicated from [project] section because poetry has not yet supported
-name = "my-project"
-version = "0.1.0"
-description = ""
-readme = "README.md"
-license = "Apache-2.0"
-authors = ["Your Name <you@example.com>"]
-
-[[tool.poetry.packages]]
-include = "myhelpers"
-from = "src"
-
-[[tool.poetry.packages]]
-include = "myapp"
-from = "src"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-attrs = "^23.2.0"
-click = "^8.1.7"
-more-itertools = "^10.2.0"
-prompt-toolkit = "^3.0.43"
-python-dotenv = "^1.0.1"
-rich = "^13.7.1"
-textual = "^0.60.1"
-tomli = "^2.0.1"
-tqdm = "^4.66.2"
-types-tqdm = "^4.66.0"
-typing-extensions = "^4.11.0"
-
-[tool.poetry.group.docs.dependencies]
-mkdocs-glightbox = "^0.3.7"
-mkdocs-material = { version = ">=9.5.17", extras = ["imaging"] }
-mkdocstrings = { version = ">=0.24.3", extras = ["python"] }
-pygments = "^2.17.2"
-
-[tool.poetry.group.dev.dependencies]
-coverage = "^7.4.4"
-jupyter-console = "^6.6.3"
-jupyterlab = "^4.1.5"
-pyright = "^1.1.357"
-notebook = "^7.1.2"
-pytest = "^8.1.1"
-pytest-cov = "^5.0.0"
-pytest-icdiff = "^0.9"
-pytest-sugar = "^1.0.0"
-pytest-xdist = "^3.5.0"
-ruff = "^0.3.5"
-ruff-lsp = "^0.0.53"
-textual-dev = "^1.5.1"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"

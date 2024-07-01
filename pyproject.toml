@@ -34,7 +34,7 @@ python = "^3.12"
 attrs = "^23.2.0"
 click = "^8.1.7"
 more-itertools = "^10.2.0"
-polars = { version = "^0.20.31", extras = ["pyarrow", "fsspec", "connectorx", "xlsx2csv", "plot", "style"] }
+polars = { version = "^1.0.0", extras = ["pyarrow", "fsspec", "connectorx", "xlsx2csv", "plot", "style"] }
 prompt-toolkit = "^3.0.43"
 python-dotenv = "^1.0.1"
 rich = "^13.7.1"

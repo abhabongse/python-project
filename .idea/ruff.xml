@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RuffConfigService">
+    <option name="globalRuffExecutablePath" value="/home/linuxbrew/.linuxbrew/bin/ruff" />
+    <option name="projectRuffLspExecutablePath" value="$USER_HOME$/.cache/pypoetry/virtualenvs/my-project-Vjb0hBIp-py3.12/bin/ruff-lsp" />
+  </component>
+</project>

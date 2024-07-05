@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="RuffConfigService">
-    <option name="globalRuffExecutablePath" value="/home/linuxbrew/.linuxbrew/bin/ruff" />
-    <option name="projectRuffLspExecutablePath" value="$USER_HOME$/.cache/pypoetry/virtualenvs/my-project-Vjb0hBIp-py3.12/bin/ruff-lsp" />
+    <option name="disableOnSaveOutsideOfProject" value="false" />
+    <option name="globalRuffExecutablePath" value="$USER_HOME$/homebrew/bin/ruff" />
+    <option name="globalRuffLspExecutablePath" value="$USER_HOME$/homebrew/bin/ruff-lsp" />
+    <option name="projectRuffExecutablePath" value="$USER_HOME$/Library/Caches/pypoetry/virtualenvs/my-project-8NHXHE4o-py3.12/bin/ruff" />
+    <option name="projectRuffLspExecutablePath" value="$USER_HOME$/Library/Caches/pypoetry/virtualenvs/my-project-8NHXHE4o-py3.12/bin/ruff-lsp" />
+    <option name="ruffConfigPath" value="$PROJECT_DIR$/pyproject.toml" />
+    <option name="runRuffOnSave" value="true" />
+    <option name="useRuffFormat" value="true" />
+    <option name="useRuffLsp" value="true" />
+    <option name="useRuffServer" value="true" />
   </component>
 </project>

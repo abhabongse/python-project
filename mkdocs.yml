@@ -32,15 +32,26 @@ theme:
     - search.highlight
 # noinspection YAMLSchemaValidation
 plugins:
+  - autorefs
   - glightbox
   - mkdocstrings:
       enabled: true
       default_handler: python
       handlers:
         python:
+          paths:
+            - src
           options:
-            show_root_heading: true
+            docstring_style: google
             heading_level: 3
+            line_length: 80
+            separate_signature: true
+            show_root_heading: true
+            show_signature_annotations: true
+            show_symbol_type_heading: true
+            show_symbol_type_toc: true
+            signature_crossrefs: true
+            unwrap_annotated: true
           import:
             - https://docs.python.org/3/objects.inv
   - search

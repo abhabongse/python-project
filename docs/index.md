@@ -11,4 +11,4 @@ Feel free to write article or customize all you want.
 
 ## Useful Links
 
-- [API Reference](API%20Reference/index.md)
+- [API Reference](api/index.md)

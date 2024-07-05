@@ -1,6 +1,7 @@
 # Additional Primitive Helpers
 
-Here is a list of additional primitive helpers.
+::: myhelpers.primitives.envvar
 
-::: myhelpers.primitives.envvar.EnvVariable
-::: myhelpers.primitives.singleton.SingletonMeta
+::: myhelpers.primitives.logging
+
+::: myhelpers.primitives.singleton

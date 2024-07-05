@@ -1,4 +1,5 @@
-"""This module provides a tool for defining a list of environment variables
+"""
+This module provides a tool for defining a list of environment variables
 accepted by the application with a configuration-based pythonic syntax.
 """
 
@@ -9,44 +10,48 @@ import os
 from collections.abc import Callable
 from typing import Any
 
-ParseFunc = Callable[[str | None], Any]
-ValidateFunc = Callable[[Any], bool]
+type ParseFunc[T] = Callable[[str | None], T]
+type ValidateFunc[T] = Callable[[T], bool]
 
 _FIELDS = '_envvar_fields_'
 
+__all__ = ['EnvVar']
 
-class EnvVariable:
+
+class EnvVar[T]:
     """
     Data descriptor for each environment variable
     defined within environment configuration class.
 
-    An example below illustrates how to use this class::
+    An example below illustrates how to use this class
 
-        class ApplicationConfig:
-            SECRET_KEY = EnvVariable(required=True, validate=lambda x: len(x) > 0)
-            DELAY_SECONDS = EnvVariable(default=0, parse=int, validate=lambda x: x >= 0)
-            FAUX_NAME = EnvVariable(env_name='REAL_NAME')
+    ```python
+    class ApplicationConfig:
+        SECRET_KEY = EnvVariable(required=True, validate=lambda x: len(x) > 0)
+        DELAY_SECONDS = EnvVariable(default=0, parse=int, validate=lambda x: x >= 0)
+        FAUX_NAME = EnvVariable(env_name='REAL_NAME')
 
-            def preload_all(self):
-                '''
-                Optionally call this method at the program start-up
-                if you wish to pre-load all environment variables.
-                Use this method is useful if you wish for your program to fail
-                as earliest as possible when configuration is not complete.
-                '''
-                for key in self._envvar_fields_.keys():
-                    getattr(self, key)
+        def preload_all(self):
+            '''
+            Optionally call this method at the program start-up
+            if you wish to pre-load all environment variables.
+            Use this method is useful if you wish for your program to fail
+            as earliest as possible when configuration is not complete.
+            '''
+            for key in self._envvar_fields_.keys():
+                getattr(self, key)
 
-        conf = ApplicationConfig()
-        conf.preload_all()
+    conf = ApplicationConfig()
+    conf.preload_all()
+    ```
 
     Program containing the above code will accept environment variables
     **SECRET_KEY**, **DELAY_SECONDS**, and **REAL_NAME**, which can be accessed through
-    ``conf.SECRET_KEY``, ``conf.DELAY_SECONDS``, and ``conf.FAUX_NAME``, respectively.
+    `conf.SECRET_KEY`, `conf.DELAY_SECONDS`, and `conf.FAUX_NAME`, respectively.
 
     Note that the owner class of these environment variable data descriptors
-    will also automatically maintaining a dictionary mapping from attribute names
-    to these data descriptors via ``_envvar_fields_`` class attribute.
+    will also automatically maintain a dictionary mapping from attribute names
+    to these data descriptors via `_envvar_fields_` class attribute.
 
     Attributes:
         attr_name: Name of the attribute tied to owner class
@@ -61,29 +66,31 @@ class EnvVariable:
         parse: If provided, must be a function which
             accepts the string value of the environment variable
             and converts it into any python value.
-            For example, this function could be :func:`int` for integer conversion
-            or :meth:`datetime.date.fromisoformat` for YYYY-MM-DD date object, etc.
+
+            For example, this function could be [`int`][] for integer conversion
+            or [`datetime.date.fromisoformat`][] for YYYY-MM-DD date object, etc.
         validate: If provided, must be a function which
             accepts the value and returns a boolean value
             whether the value is to be marked as validated.
+
             For example, to enforce that the parsed value must be positive,
-            use ``lambda x: x > 0`` as the validation function.
+            use `lambda x: x > 0` as the validation function.
     """
 
     attr_name: str | None
     env_name: str | None
     required: bool
     default: Any
-    parse: ParseFunc | None
-    validate: ValidateFunc | None
+    parse: ParseFunc[T] | None
+    validate: ValidateFunc[T] | None
 
     def __init__(
         self,
         env_name: str | None = None,
         required: bool = False,
         default: Any = None,
-        parse: ParseFunc | None = None,
-        validate: ValidateFunc | None = None,
+        parse: ParseFunc[T] | None = None,
+        validate: ValidateFunc[T] | None = None,
     ):
         self.attr_name = None
         self.env_name = env_name
@@ -117,7 +124,7 @@ class EnvVariable:
             return self.default
         if self.parse:
             value = self.parse(value)
-        if self.validate and not self.validate(value):
+        if self.validate and not self.validate(value):  # pyright: ignore [reportArgumentType]
             if self.validate.__name__.isidentifier():
                 func_alias = f" {self.validate.__qualname__}"
             else:
